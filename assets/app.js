@@ -1,3 +1,5 @@
+const IMG_MID = "https://cdn.shopier.app/pictures_mid/jettluxe_";
+const IMG_BIG = "https://cdn.shopier.app/scaledoriginal/jettluxe_";
 const ICO = {
   ship:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 3h13v13H1zM14 8h4l3 4v4h-7"/><circle cx="5.5" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg>',
   swap:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h14l-3-3M21 16H7l3 3"/></svg>',
@@ -9,8 +11,10 @@ const ICO = {
 const favs = JSON.parse(localStorage.getItem("jl_favs")||"[]");
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 
-function imgTag(f, alt){
-  return '<img src="'+CDN+f+'" alt="'+esc(alt)+'" loading="lazy" onerror="this.onerror=null;this.src=\''+CDN_MID+f+'\'">';
+function imgTag(f, alt, big){
+  const src = (big ? IMG_BIG : IMG_MID) + f + ".jpeg";
+  const fb  = (big ? IMG_MID : IMG_BIG) + f + ".jpeg";
+  return '<img src="'+src+'" alt="'+esc(alt)+'" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=\''+fb+'\'">';
 }
 
 function header(active){
@@ -73,6 +77,7 @@ function grid(target, items){
 
 function home(){
   grid("newest", PRODUCTS.slice(0,6));
+  grid("featured", PRODUCTS.slice(8,11));
   const c = document.getElementById("cats");
   c.innerHTML = CATS.map(x=>'<a class="cat" href="/koleksiyon?kategori='+x[0]+'"><span class="arw">'+ICO.arr+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></a>').join("");
 }
@@ -119,7 +124,7 @@ function urun(){
   if(!p){ el.innerHTML = '<div class="prose"><p>Ürün bulunamadı.</p><a class="btn btn-gold" href="/koleksiyon">Koleksiyona dön</a></div>'; return; }
   document.title = p.name + " — JettLuxe Premium";
   const catName = (CATS.find(c=>c[0]===p.cat)||["","Parça"])[1];
-  el.innerHTML = '<div class="dgrid"><div class="detail-img">'+imgTag(p.img,p.name)+'</div><div class="pmeta">'+
+  el.innerHTML = '<div class="dgrid"><div class="detail-img">'+imgTag(p.img,p.name,true)+'</div><div class="pmeta">'+
   '<a class="eyebrow" href="/koleksiyon?kategori='+p.cat+'">'+catName+'</a><h1>'+esc(p.name)+'</h1>'+
   '<div class="price">'+p.price+' TL</div>'+
   '<p class="muted" style="font-size:12px;margin-top:8px">Stok ve varyasyon bilgisi Shopier sayfasında. Sipariş öncesi açıklamayı okuyun.</p>'+
