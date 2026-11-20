@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tüm ürünler — JettLuxe Premium</title>
+<meta name="description" content="JettLuxe Premium koleksiyonunun tamamı: bileklik, kolye, yüzük. Kategoriye göre filtrele, Shopier'de satın al.">
+<link rel="icon" href="https://cdn.shopier.app/logo_234/jettluxe_b86499b43bdf56d7e2f80069fc2dd0ce.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="koleksiyon">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="page-hd">
+    <div class="eyebrow">Koleksiyon</div>
+    <h1>Tüm parçalar</h1>
+    <p class="muted" style="font-size:12px;margin-top:8px" id="count"></p>
+  </div>
+  <div class="filters" id="chips" style="padding-top:16px"></div>
+  <div class="toolbar">
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98938A" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" placeholder="Ürün ara">
+    </div>
+    <select id="sort">
+      <option value="rec">Önerilen</option>
+      <option value="asc">Fiyat ↑</option>
+      <option value="desc">Fiyat ↓</option>
+    </select>
+  </div>
+  <div class="grid" id="list"></div>
+  <div style="padding:22px 0">
+    <a class="btn btn-ghost btn-block" href="https://www.shopier.com/jettluxe" target="_blank" rel="noopener">Shopier'de tüm ürünler</a>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="/assets/data.js"></script>
+<script src="/assets/app.js"></script>
+<script>boot(koleksiyon);</script>
+</body>
+</html>
